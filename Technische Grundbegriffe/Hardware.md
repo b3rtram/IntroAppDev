@@ -1,0 +1,69 @@
+Hardware
+
+Als Hardware bezeichnet man die Dinge die man in den Händen halten kann. Geht man in einen Technikladen in die Computer- oder Handyabteilung kann man alle Arten von Hardware kaufen. Dazu gehören Laptops, PCs, Tablets, Handys, Grafikkarten aber auch Ein- und Ausgabegeräte wie Monitor, Tastaturen, Mäuse. In Unternehmen werden Server eingestezt. Das sind Computer die nur Rechenleistung bieten für Programme, die Tag und Nacht laufen und die von mehreren Verwendern genutzt werden. Server kann man für eine zentrale Dateienablage nutzen oder um E-Mails zentral zu speichern. Es gibt ziemlich viele verschiedene Arten von Hardware für sehr spezielle Anwendungen, aber alle basieren auf den gleichen Prinzipen.
+
+Hardware arbeitet auf Basis von Strom, vereinfacht gesagt „Strom an“ und „Strom aus“. Das sind zwei Zustände die man einfach unterscheiden kann. „Strom an“ kann man mit der Zahl 1 und „Strom aus“ mit der Zahl 0 interpretieren. Und damit bildet man das ganze Universum an Apps und Anwendungen ab, welches wir heute kennen.
+
+Woran liegt das? Mit der 1 und der 0 hat man ein Zahlensystem mit zwei Ziffern und man kann dieses relativ einfach auf unser Zahlensystem mit 10 Ziffern, 0 bis 9, umrechnen. (image004.png Umrechnung Binär Dezimal)
+
+image005.png (Abbildung 1 Umrechnungstabelle Binär - Dezimal)
+
+Die Darstellung eines Zustandes 0 oder 1 nennt man ein Bit. Dafür gibt es ein elektrotechnisches Bauteil, der Transistor, den man auf „Strom durchlassen“ und „Strom nicht durchlassen“ schalten kann, mit einem dritten Strom:
+
+image006.png (Abbildung 2 Konzeptionelles Abbild Transistor)
+
+Wenn auf E ein Strom anliegt kommt der bei A nur an, wenn B auch Strom hat. Das ist wie ein Lichtschalter, bei dem man mit Strom über B das Licht an oder ausschalten kann. 
+
+Mit einem Bit kann man zwei Zahlen 0 und 1 darstellen. Um größere Zahlen darstellen zu können muss man mehrere Bits kombinieren. D.h. man baut aus Transistoren sogenannte Register. Aktuelle CPUs bilden Register mit 64 Bit ab, damit kann man schon ganz schön große Zahlen in unserem dezimalen Zahlensystem abbilden. (-9.223.372.036.854.775.808 bis 9.223.372.036.854.775.808, wenn man größere Zahlen verarbeiten möchte muss man sich etwas anderes einfallen lassen, ist aber grundsätzlich möglich)
+
+image007.png (Abbildung 3 Konzeptionelle Abbildung Register)
+
+Zahlen darstellen und speichern ist der erste Schritt, aber man benötigt noch die Möglichkeit mit den Zahlen etwas zu tun. Dazu bedient man sich logischen Schaltungen. Die kommen aus der booleschen Algebra (image004.png boolesche Algebra), die ein Teil der Mathematik ist und logische Operatoren wie UND, ODER, NICHT und andere definiert. Diese mathematischen Funktionen werden mit elektronischen Bauteilen wie den Transistoren umgesetzt. Eine rudimentäre Schaltung ist z.B. die UND Schaltung. Zwei Schalter, die beide geschlossen werden müssen, damit der Stromkreis geschlossen ist. Auf der folgenden Abbildung 4 sehen Sie links eine Stromquelle, oben zwei Schalter, rechts einen Widerstand und eine Diode. Die Diode leuchtet nur wenn oben beide Schalter eingeschaltet werden. Das könnte aus der Schule noch bekannt sein.
+
+image008.png (Abbildung 4 Schaltplan logische Schaltung UND)
+
+Wenn man sich jetzt anstatt der Schalter zwei Transistoren vorstellt und ohne Diode, hat man eine UND Schaltung umgesetzt. Die Abbildung der UND Schaltung wird schematisch wie in Abbildung 5 dargestellt.
+
+Image009.png (Abbildung 5 Schematische UND Schaltung)
+
+Es gibt einige logische Schaltungen wie UND, ODER, EXCLUSIVE ODER usw. ( Logische Schaltungen)
+
+Diese logischen Operatoren kann man nutzen um mathematische Funktionen nachzubilden wie z.B. eine Addition und andere nützliche Funktionen. Das ist jetzt ein Abbild einer Schaltung die man Halbaddierer nennt:
+
+image010.png (Abbildung 6 Halbaddierer)
+
+Damit kann man zwei Ziffern, 0 und 1, addieren. Wie das im Detail geht wird hier nicht tiefer behandelt. Wenn man mehrere Haldaddierer zusammenfasst hat man einen Volladdierer der in der Lage ist Zahlen im Binärformat zu addieren um sie dann in das Dezimalsystem umzubrechen.
+
+Eine weitere wichtige Schaltung die wichtig zu erwähnen ist, ist ein Flip Flop. Damit kann man Werte speichern, verändern oder zurücksetzen. Dies wird dazu verwendet um Daten zu speichern. Die Schaltung sieht so aus:
+
+image011.png (Abbildung 7 Flip Flop)
+
+Zusammengefasst kann man sagen, eine CPU ist also nichts anderes als ein Netz aus Transistoren, in denen man die Werte „Strom an“ und „Strom aus“ setzen kann. Die Transistoren sind verbunden zu Schaltungen die Werte speichern oder verarbeiten. Je nach CPU hat schon mal 1 – 2 Milliarden Transistoren, die auf Platinen eingebrannt sind.
+
+Damit alles im gleichen Takt läuft gibt es einen Quarzkristall dessen Vibrationen den Takt vorgeben. Die Taktzahl der CPU gibt an wie oft man den „Strom an“ oder „Strom aus“ umschalten kann was gleichbedeutend ist, wie viele Operationen man ausführen kann. Wenn eine CPU 3 GHz ausweist, reden wir von 3 Milliarden mal pro Sekunde, also z.B. 3 Milliarden Additionen. Allerdings ist das ein theoretischer Wert, weil noch viele andere Themen eine Rolle spielen, die wir hier nicht weiter betrachten.
+
+Man möchte aber nicht nur Zahlen verarbeiten, sondern auch mit Texten und Grafiken oder anderen Daten verschiedene Dinge tun können wie z.B. dieses Buch hier schreiben. Dazu muss man eine Darstellung finden wie man mit Zahlen Buchstaben, Grafiken oder andere Daten darstellen kann. 
+
+Buchstaben z.B. kann man darstellen in dem man bestimmten Buchstaben Zahlen zuweist. Das nennt man Kodierung. Eins der ersten und bekanntesten Kodierungen ist die ASCII Kodierung (image004.png ASCII Tabelle). ASCII kommt aus einer ZeitComputer noch mit 8-Bit Register gearbeitet haben und definiert für die Zahlen 0-127 dazugehörige Buchstaben. Steht z.B. im Speicher die Zahl 120 ist das ein „P“. Spezielle Zeichen wie Ä oder Ö sind damit nicht abgedeckt genauso wenig wie arabische, griechische oder chinesische Zeichen oder alle anderen Zeichen die es in der Welt so gibt. Somit wurden weitere Kodierungen erfunden wie Unicode. Das ist eine Kodierung mit 16 Bit, damit sind über 32.000 Zeichen möglich. Es gibt aber eine Vielzahl von Kodierungen ich hier nicht aufzähle. Wenn man jetzt auf Daten eine falsche Kodierung verwendet kann es sein dass man falsche Buchstaben wie z.B. statt ‚ä‘ oder ‚ö‘ ein ‚?‘ angezeigt bekommt. 
+
+Bei Grafiken werden Farben in den Farben Rot, Grün, Blau dargestellt. Für diese drei Farben wird jeweils ein Wert von 0 – 255 festgelegt und über die additive Farbmischung die Farbe berechnet. So kann man für jede Art von Daten, die man im Computer verarbeiten möchte über Zahlen eine Darstellung finden, um im Computer damit zu arbeiten.
+
+Also..., im Speicher steht immer eine Zahl egal welche Daten man im Computer darstellen möchte. Woher weiß man jetzt, ob das ein Buchstabe, eine Zahl oder eine Farbe ist. Der Computer selber weiß das nicht, dazu muss man etwas in die Software schauen. In der Software verwendet man sogenannte Typen, die festlegen, ob eine Zahl im Computer eine Zahl, ein Text oder was auch immer ist. Dazu kommen wir aber später noch.
+
+Hier noch ein paar Details zur Hardware:
+
+PCs oder Handys sind immer nach einem sehr ähnlichen Prinzip aufgebaut, der sogenannten von Neumann Architektur ( von Neumann Architektur) Diese Architektur definiert vier grundlegende Komponenten:
+
+- CPU
+- Speicher
+- Ein- /Ausgabekomponenten
+- Bussystem
+
+Das Bussystem verbindet die anderen Komponenten um eine Kommunikation zu ermöglichen. D.h. die anderen Komponente schicken Daten auf den Bus oder holen Daten da wieder ab. Z.B. legt die CPU Daten im Speicher ab oder der Benutzer hat einen Buchstaben auf der Tastatur eingegeben. Die Platine die den Bus beinhaltet und auch die ganzen Schnittstellen wo man Hardware wie CPU einstecken kann nennt sich das Motherboard.
+
+Die CPU steht für Central Processing Unit und ist im Prinzip der Kern, der die logischen Schaltungen beinhaltet und diese sehr schnell ausführen kann. Die CPU beinhaltet auch einen sehr schnellen Speicherplatz der sogenannte Cache. Der Cache ist recht klein aber hilft die Aufgaben doch deutlich zu beschleunigen weil ein Zugriff in den zentralen Speicher recht lange dauert.
+
+Der Speicher ist zum Speichern von Daten. Hier gibt’s flüchtige und feste Speicher. Der flüchte Speicher besteht im Prinzip aus unglaublich vielen Flip Flop Schaltungen wie oben gesehen. Der flüchtige Speicher (RAM) ist sehr schnell, aber wenn man den Computer ausschaltet sind die Daten weg. Deswegen wird ein fester Speicher verwendet, die Festplatte, welche die Daten so ablegen, dass sie nicht verloren gehen, wenn der Strom weg ist.
+Wenn man ein Programm startet wird dieses normalerweise von einer Festplatte gelesen und in den Speicher geladen. Der Prozess bekommt einen gewissen Speicherbereich zugewiesen. Programme können nicht über die Speichergrenzen hinweg auf Daten anderer Programme zugreifen.
+
+In den letzten Jahren rückt vermehrt auch die GPU in den Vordergrund. Die GPU (Graphics Processing Unit) ist ein Prozessor, der speziell zur Berechnung von grafischen Operationen ausgelegt ist. Um Grafik darzustellen werden vor allem Operationen der linearen Algebra verwendet, also Matrixoperationen. Entwickelt um die Grafik von Computerspielen und Simulationen zu verbessern nutzt man diese GPUs auch für das relativ neue Thema Künstliche Intelligenz, weil auch diese vor allem auf Matrix Operationen basieren. 

@@ -1,0 +1,412 @@
+Programmiersprachen
+
+Wie wir bei dem Kapitel Hardware gesehen haben hat jede CPU einen Befehlssatz. Um die Befehle nacheinander auszuführen, kann ein Entwickler eine Abfolge von Befehlen in den Speicher laden und die CPU anweisen die Befehle nacheinander auszuführen. Das klingt kompliziert, ist es auch. Deswegen hat man mit Betriebssystemen und höheren Programmiersprachen dieses Verfahren komplett wegabstrahiert. D.h. kein Entwickler muss sich damit noch rumschlagen (außer in Branchen in der eine hardwarenahe Programmierung wichtig ist, wie bei Embedded Software die wir hier nicht betrachten).
+
+Nachdem die Befehle in CPUs ja nur aus 0 und 1 bestehen und es sehr schwer ist damit überhaupt Anwendungen zu schreiben haben sich über die Zeit hinweg Programmiersprachen entwickelt die diesen Prozess stark vereinfachen. Als erstes wurden für einzelne Operationen der CPU aussagekräftige Namen gegeben. Das nennt man Assembler:
+
+```
+.model small
+.stack 100h
+.data
+
+msg	
+db 'Hello world!$'
+
+.code
+
+start:
+
+	movah, 09h ; Display the message
+	lea dx, msg
+
+	int	21h
+
+	movax, 4C00h ; Terminate the executable
+	int	21h
+
+end start 
+```
+
+Beispiel von: https://en.wikipedia.org/wiki/X86_assembly_language
+
+Hier sieht man die einzelnen Befehle um „Hello World“ aus der Konsole auszugeben. Assembler ist auf Basis des CPU-Befehlssatzes und wird heute nur noch sehr selten verwendet. Assembler Code ist schwer und umständlich zu entwickeln und wird sehr schnell unübersichtlich. Deswegen haben sich Entwickler schon sehr früh damit beschäftigt, wie man effektiver Programme schreiben kann. Daraufhin sind Programmiersprachen in Hülle und Fülle entstanden von denen sich einige durchgesetzt haben, z.B. C. Hier sieht das gleiche Programm so aus:
+
+```
+#include <stdio.h>
+
+main()
+{
+	printf("hello, world\n");
+}
+```
+
+Um dieses C - Programm auf der CPU ausführen zu können benötigt man ein weiteres Programm welche die Übersetzung vornimmt, der sogenannte Compiler. Dieser erstellt aus dem C Programm das Assemblerprogramm oben und generiert eine Datei die man in dem Betriebssystem ausführen kann. Das nennt mach auch bauen oder englisch build.
+
+Programmiersprachen sind eine Wissenschaft für sich, es gibt kompilierte, zur Laufzeit kompilierte, interpretierte, typisierte und nicht typisierte, strukturierte, objektorientierte, logische, funktionale Sprachen und Mischformen. Hier näher darauf einzugehen würde den Rahmen sprengen. Der Tibo Index erfasst welche Programmiersprachen gerade aktuell verwendet werden. (image004.png Tibo Index)
+
+Jede Sprache hat Vor- und Nachteile und wurden für einen bestimmten Zweck konzipiert. Es gibt Programmiersprachen die sind dafür da sehr schnell Anwendungen umzusetzen, es gibt welche die sind sehr leicht zu lernen oder auch Sprachen die es ermöglichen sehr performante Anwendungen zu entwickeln. Die richtige Wahl kann den Verlauf eines Projektes beeinflussen. Die meisten angewendeten Programmiersprachen sind strukturierte Programmiersprachen oft mit dem Aufsatz der Objektorientierung. Beispiele sind C/C++, Java, C#, Python, JavaScript.
+
+Bekannte Programmiersprachen
+
+C / C++
+
+Diese Sprache ist schon ziemlich alt und immenoch sehr beliebt. C wurde als erstes entwickelt dann wurde der Sprache noch Objektorientierung hinzugefügt. Daraus wurde C++. In C/C++ hat der Programmierer alles selber in Griff und kann sehr rudimentäre Funktionen bauen. Diese Sprache wird für alle Arten von Programmen verwendet. Vor allem bei performanten Programmen wie Spiele, Betriebssysteme oder Programme die Nahe an der Hardware agieren müssen wie das BIOS. Die Syntax der Sprache ist für viele andere Sprachen ein Vorbild.
+
+Java
+
+Java ist eine rein objektorientierte Programmiersprache. Java hat einen neuen Weg eingeschlagen. Hier wir das Programm in eine Zwischensprache kompiliert und nicht in Maschinenbefehle. Diese Zwischensprache wird von einem anderen Programm, der sogenannten Java Virtual Machine ausgeführt. Der Vorteil ist, dass das Programm einmal gebaut auf mehrere Plattformen läuft. Das hat zu einer sehr großen Verbreitung geführt und Java erfreut sich heute noch großer Beliebtheit.
+
+C#
+
+C# mit dem .NET – Framework ist die Antwort von Microsoft auf Java und wird auch in eine Zwischensprache kompiliert, die sogenannte Intermediate Language. Es ist eine objektorientierte Programmiersprache und inzwischen auch Plattformübergreifend. Das .NET Framework vereinfacht die Nutzung von den Windows Betriebssystem Funktionen und man kann relativ schnell Anwendungen entwickeln.
+
+Javascript
+
+Javascript hat nichts mit Java zu tun. Es ist eine Sprache um Webseiten dynamischer zu machen. Javascript wurde als Sprache für den Browser entwickelt. Mit Javascript kann man recht komplexe Webseiten  erstellen. Nodejs ermöglicht es Javascript auch für Hintergrundprozesse zu verwenden. Wird sehr gerne von Startups verwendet da man mit dieser Programmiersprache schnell Funktionen umsetzen kann. Allerdings kann der Code sehr schnell unübersichtlich und unwartbar werden. Deswegen wurde von Microsoft der Aufsatz Typescript erfunden der Javascript um mehrere Funktionen ergänzt die der Sprache mehr Struktur geben.
+
+Python
+
+Python ist sehr beliebt bei den Themen Datenanalyse und KI. Die Sprache ist einfach zu lernen und hat einen unglaublichen Umfang an freien Bibliotheken für alle möglichen Anwendungsfälle. Wenn man eine Programmiersprache lernen will sollte die Sprache ganz oben auf der Liste stehen.
+
+Go
+
+Go ist eine relativ neue Sprache von Google und vereint viele Vorteile moderner Sprachen in sich. Außerdem hat sie den Vorteil, dass das parallele Ausführen von Funktionen Teil der Sprache ist. Programme in Go verbrauchen von Haus aus wenige Ressourcen. Somit ist das eine optimale Sprache für Hintergrundservices aller Art.
+
+Die aufgezählten Sprachen fallen unter die Kategorie der Strukturierten Programmiersprachen. Strukturierte Sprachen werden am häufigsten verwendet. In dem nächsten Kapitel werden wir uns die Kernkonzepte dieser Sprachen ansehen, die Beispiele werden in Golang erstellt.
+
+Strukturierte Programmierung
+
+Strukturierte Programmiersprachen sind in den meisten Szenarien die Wahl. Die strukturierten Programmiersprachen sind sich im Kern sehr ähnlich und so sollte es wenig Probleme bereiten von einer strukturierten Programmiersprache auf eine andere umzusteigen. Wenn man kein Software Entwickler ist kann Code verwirrend und unübersichtlich aussehen. Im Prinzip kann man mit einer strukturierten Programmiersprache aber gar nicht so viel machen:
+
+Grammatik
+
+Jede Programmiersprache hat eine Grammatik, ähnlich wie bei natürlichen Sprachen wie Deutsch oder Englisch. Die Grammatik sagt aus wo welche Klammern stehen müssen, Namensregeln für Variablen, Strichpunkte und vieles weitere. Sie legt die Struktur der Sprache fest. Wenn man gegen die Grammatik verstößt bekommt man sofort Feedback, weil das Programm nicht gebaut werden kann. Jede Programmiersprache hat eine eigene Grammatik die ein Entwickler kennen muss. Moderne Editoren prüfen die Grammatik während man den Code schreibt.
+
+Kommentare
+
+Im Code kann man Texte hinterlegen die einfach nur eine bestimmte Zeile erklären und keinen Einfluss auf das Programm selber haben. Kommentare werden in den meisten Programmiersprache mit dem Zeichen // oder /* … */ markiert. Komplizierte Codestellen sollte man mit einen Kommentar erklären damit andere Entwickler später diesen auch verstehen können.
+
+Variablen
+
+Um Werte im Speicher abzulegen gibt es Variablen. Der Entwickler überlegt sich einen sprechenden Namen, kann diesem Namen einen Wert zuweisen und schon ist dieser Wert im Speicher abgelegt. Über den Namen kann man den Wert auch wieder abrufen. Das Ganze nennt man eine Variable, weil man den Inhalt im Laufe des Programms auch ändern kann.
+
+```
+/* in der Variable mit Namen a steht die Zahl 10. Im weiteren Verlauf kann man mit Namen a weiterarbeiten */
+a := 10
+
+// in der Variable s steht die Zeichenfolge hello world
+s := "hello world" 
+```
+  				 
+Listen
+
+Man kann auch Variablen in Listen ablegen. Das kommt recht häufig vor und das nennt man Arrays. Über die Listen kann relativ leicht iterieren. D.h. in einer Schleife einen Wert nach dem anderen verarbeiten.
+
+```
+arr := [5]int{1,2,3,5,8} // Eine Folge an Zahlen
+```
+
+Typen
+
+Man muss Variablen einen Typen zugewiesen werden, damit klar ist welche Bedeutung die Daten haben. Eine Zahl, ein Text oder ein anderer Typ. Es gibt Basistypen:
+
+-- Integer -> Ganze Zahl
+-- Float / Double -> Kommazahl
+-- Zeichen -> Ein Buchstabe
+-- Boolean -> Speichert wahr oder falsch als wert
+-- String -> eine Menge an Zeichen als Text
+-- Byte -> 8 Bit ohne Deutung was darin steht
+
+Es kommt vor, dass man Variablen von einem Typen in einen anderen konvertieren muss. Das nennt man casten. Es ist gar nicht so einfach eine Variable vom Type String „66“ in eine Zahl 66 zu verwandeln, weil sich die zwei Werte im Speicher komplett unterscheiden. Die meisten Programmiersprachen haben in ihrer Standardbibliothek aber Funktionen die das übernehmen.
+
+Außerdem gibt es noch komplexe Typen aus der Standardbibliothek wie Date also eine gute Repräsentation von einem Datum. Aber der Programmierer kann auch selber Typen erstellen. Damit werden Variablen die zusammengehören zusammengefasst. Z.B. kann man einen Typ Person erstellen mit Variablen wie Name, Vorname, Geburtsdatum, Wohnort. 
+
+Nicht alle Programmiersprachen benötigen explizit die Angabe von Typen. In Javascript z.B. werden die Typen über den Inhalt der Variable ermittelt. D.h. wenn man der Variablen einen Wert in „“ zuweist wird das automatisch zu einem String. Der Typ kann hier auch dynamisch wechseln. D.h. wenn man eine Variable a mit "hello world" initialisiert ist es ein String, wenn man danach a  eine 0 zuweist wird automatisch ein int daraus. In Golang gibt es beides. Wenn man eine Variable ohne Wert initialisiert dann muss man den Typen angeben. Wenn man ohne Wert eine Variable deklarieren möchte dann muss der Typ dabei stehen. Ein Wechsel des Typs ist dann nicht mehr möglich und wird einen Fehler falls das versucht wird.
+
+```
+//Die Variable number ist vom Typ integer 
+//also ein ganze Zahl mit bit speicher 
+//länge
+var number int
+
+//Die Variable name ist ein Text
+var name string	
+
+//Die Variable ist ein integer
+n := 0
+
+//Artikel ist ein benutzerdefinierter Typ 
+//der andere Variablen enthält
+type Artikel struct { 
+	ID string
+	Bezeichnung string
+	Beschreibung string
+	Preis float
+}
+
+type Auftrag struct {
+	ID string
+	Kunde Kunde
+	//Eckige Klammern sind meistens Listen.
+	//hier kann man eine Liste von Artikeln 
+	//speichern
+	Artikel []Artikel 
+}
+
+type Kunde struct {
+	ID string
+	Name string
+}
+```
+
+In allen Programmiersprachen kann man auch komplexere verschachtelte Typen anlegen wie z.B. den Typ Artikel. Damit versucht man die Fachlichkeit der Domäne in der man arbeitet abzubilden. Der Entwickler baut sich Typen für die Entitäten die in den Anforderungen vorkommen. Ein Beispiel: wenn wir einen E-Commerce Shop programmieren, haben wir mit Kunden, Artikel, Aufträge, Preise etc.. In dem Beispiel oben haben wir Typen für einen Artikel, einen Auftrag und einen Kunden angelegt. Der Auftrag beinhaltet jeweils einen Kunden als Untertypen und eine Liste von Artikeln. Damit können wir im Programm die reale Welt abbilden. Dies oben sind jetzt aber nur Definitionen. Es ist noch kein konkreter Kunde, Artikel oder Auftrag im Speicher abgelegt. 
+
+Man schreibt keine Typen oder Variablen in Deutsch, das ist hier nur der einfachheitshalber wegen. Englisch ist die vorherrschende Sprache und sollte dringend so umgesetzt werden. Softwareentwicklung wird immer internationaler und auf dem Markt gibt es zu wenige IT Experten, deswegen kann es sein, dass man auf ausländische Entwickler zurückgreifen muss. Wenn dann der Code auf Deutsch ist, bekommen Sie in Probleme. Manchmal ist es nicht so leicht deutsche Wörter zu übersetzen. Hier hilft vielleicht ein unternehmensweites Glossar.
+
+Um einen konkreten Kunden im Speicher anzulegen verwendet man folgende Syntax:
+
+```
+kunde1 := Kunde{ ID: „4711“, Name: „Bertram“}
+kunde2 := Kunde{ ID: „1234“, Name: „Charly“ }
+
+//Auf die Variablen wie Name kann man einem Punkt 
+//zugreifen, die folgende Zeile gibt den Namen auf der Konsole
+//aus
+fmt.Println(kunde.Name) 
+```
+
+Operationen
+
+Um mit den Variablen etwas zu tun gibt es Operationen. Plus, Minus, Zusammensetzen von Texten, Vergleiche usw.. Operationen passen sich an die Typen an. Wenn man zwei Text mit + addieren möchte, werden die Texte zusammengefügt, während wenn man zwei Zahlen addiert werden die zwei Zahlen ganz normal mathematisch aufsummiert.
+
+```
+//In a steht danach 12
+let a = 10
+a = a + 2   
+
+//Zusammenfügen von Texten danach steht in s hello world!
+let s = "hello world"
+s = s + „!“
+```
+
+Schlüsselwörter
+
+Es gibt Wörter mit einer besonderen Bedeutung die man nicht anders verwenden darf. Ein paar Beispiele:
+
+Mit if kann man z.B. einen Programmteil nur ausführen, wenn eine Bedingung erfüllt ist:
+
+```
+/* wenn a den Wert 12 hat dann wird der Code innerhalb des ifs ausgeführt, === ist Vergleichsoperator der wahr oder falsch zurückgibt */
+
+if(a === 12) {
+	s = s + „!!!!“   //füge s noch 4 Ausrufezeichen hinzu
+
+}
+```
+
+Mit for kann man bestimmte Befehle immer wieder wiederholen solange bis eine Bedingung eintrifft. Das funktioniert vor allem gut mit Arrays.
+
+```
+/*Der Code in den Klammern wird 10x ausgeführt. Man kann auch statt i<10 auch eine Variable verwenden. So kann man z.B. über eine Liste von Daten etwas tun dessen Anzahl man vorher nicht kennt. In dem Beispiel wird der die Zahl 0 – 9 in der Konsole ausgegeben.*/
+
+for i:=0; i<10; i++ {
+  fmt.Println(i)
+}
+```
+
+Funktionen
+
+Strukturieren und Wiederverwenden von Programmteilen ist bei komplexen Applikationen wichtig, deswegen kann man seinen Code in Funktionen aufteilen
+
+```
+//In der Funktion warden die Übergabeparameter summiert
+//und zurückgegeben
+func add(a, b) int {
+		return a+b;  
+}
+
+//Hier wird die funktion add aufgerufen 
+//und s speichert den zurückgegebenen Wert
+sum := add(1,2); 
+```
+
+In dem Beispiel haben wir eine Funktion *add* programmiert. Man kann einer Funktion Parameter mitgeben. In dem Fall werden die Übergabeparameter in die Variablen a und b gespeichert. Das ist ein sehr triviales Problem. Stellt man sich sehr komplexe Berechnungen vor, die an vielen Stellen benötigt werden, machen Funktionen sinn. Außerdem erhöhen Funktionen die Lesbarkeit von Code. 
+
+Wenn man z.B. eine Funktion hat die eine Liste sortiert, dann kann man ganz einfach die Sortierung an verschiedenen Stellen verwenden und der Funktion einen entsprechenden Namen geben. Wie Sortierung dann funktioniert ist erst einmal unwesentlich. Die können relativ kompliziert werden, wenn man diese performant umsetzen möchte.
+ 
+```
+let listWithManyData = […]
+
+/* Mit dem Schlüsselwort function kann man eine Funktion definieren. Diese trägt den Namen sortList und in der Klammer stehen die Übergabeparamenter */
+func sortList(list) []int {	
+	//hier sollte der sort code stehen
+	…
+	return list
+}
+
+/*Aufruf der Funktion sortlist mit dem Parameter ListWithManyData */
+
+sortedList := sortList(listWithManyData);	
+```
+
+Libraries (Bibliotheken)
+
+Um den Code noch weiter zu strukturieren fasst man Code zusammen der fachlich zu einem Thema passt und verpackt diesen in sogenannte Libraries bzw. Libs. Libraries kann man als Zusammenfassung von thematisch zusammenhängenden Funktionen bezeichnen. Möchte man z.B. Datumsberechnungen vornehmen. Die können durchaus komplex werden. Deswegen packt man diese Berechnungen eine Library um die Funktionen in verschiedenen Programmen wiederzuverwenden. Man macht sehr häufig Gebrauch von Libraries sonst würde der Code sehr schnell unübersichtlich und unwartbar werden. Es ist außerdem es sehr von Vorteil, wenn man mehrere Entwickler hat, dass diese in unterschiedlichen Dateien gleichzeitig arbeiten können.
+
+In Golang nutzt man das Schlüsselwort import um Libraries zu verwenden:
+
+```
+package main
+
+//Hier wird definiert welche Libraries verwendet werden können
+import (
+	"fmt"
+	"time"
+)
+
+func main() {
+	//Hier wird die Lib fmt verwendet. fmt wird zur Ausgabe auf 
+	//der Console verwendet
+	fmt.Println("hello world)
+	
+	//Hier wird die Lib time verwendet. Die Funktion Now() gibt 
+	//gibt die aktuelle Zeit zurück
+	t := time.Now()
+}
+
+```
+
+
+Es gibt auch reihenweise Libraries die man wiederverwenden kann, die von anderen Entwicklern geschrieben wurden. Es gibt Libs für fast alles was man sich vorstellen kann. Mathematik, Datumsberechnungen, Stringmanipulation, Spracherkennung, das Feld ist riesig. Viele davon kann man umsonst auf Basis von Open Source verwenden.
+
+Libraries gibt es wirklich für alles und man beschäftigt sich als Entwickler oft mehr mit der Verwendung von Libraries als mit der Programmiersprache. Wenn man z.B. mit 3D Grafikprogrammierung beginnen möchte kann man mit OpenGL dies relativ leicht umsetzen, so leicht wie 3D Programmierung eben ist. Aber man muss sich intensiv mit OpenGL beschäftigen.
+
+Jede Programmiersprache bringt auch immer eine Standardbibliothek mit, also Funktionen die man sehr häufig benötigt wie mathematische Berechnungen, Lokalisation, Sortierung von Daten, erweiterte Listenfunktionen oder auch Möglichkeiten eine Oberfläche zu programmieren. Wenn man C# oder Java lernen möchte ist es meistens mehr Aufwand die ganzen Libs und ihre Funktionen zu kennen als die Grammatik und Schlüsselwörter der Sprache zu lernen. 
+
+Für die meisten Sprachen gibt es auch sogenannte Frameworks. Das ist ein Aufsatz zu der Sprache und der Standardbibliothek die einem nochmal viele Funktionen bringen und einem viel Arbeit abnehmen können. Wenn Libs einzelne kleine Teilbereiche abdecken versucht ein Framework ein Komplettpaket an Funktionen bereitzustellen um einen Entwickler bei einem Problem vollumfänglich zu unterstützen und die Architektur vorzugeben. Es gibt z.B. Frameworks für Webanwendungen. Da findet man von Bereitstellen einer Rest-API bis zum Zugriff auf die Datenbank alle Funktionen die man typischerweise benötigt. Man sucht sich Frameworks also für den Verwendungszweck aus und hat damit schon maßgeschneidert ein Set an Bibliotheken die man dafür benötigt. Z.B. ist Spring Boot für Java ist ein Framework das sehr gut für Webanwendungen funktioniert.
+
+Objektorientierung
+
+Eine Erweiterung der Typisierung gibt es in der Objektorientierung auch OOP genannt. Wichtig ist, dass sie das einmal gehört haben und die Begriffe kennen. Über Objektorientierung gibt’s viele Bücher die man lesen kann und es fällt auch manchen Entwicklern schwer das Konzept zu verstehen und richtig einzusetzen. Objektorientierung hat schon so manches Projekt ins Chaos gestürzt. Nichtsdestotrotz sind objektorientiere Sprachen die Regel und die meisten modernen Sprachen enthalten grundlegende Elemente der Objektorientierung. 
+
+Oben haben wir gesehen dass der Entwickler Typen anlegen kann wie Artikel und darin die Eigenschaften eines Artikels anlegen kann. In der Objektorientierung ist es so, dass man in Typen nicht nur Werte speichern kann sondern auch Funktionen. D.h. man kann einer Entität auch noch Fähigkeiten geben. Deswegen reden man von Klassen und wenn man davon eine Instanz erstellt, hat man ein Objekt. Man spricht auch nicht mehr von Variablen innerhalb der Klasse, sondern von Members und Funktionen heißen Methoden. Klassen können auch weitere Klassen beinhalten und ein spezielles Feature ist, dass Klassen von anderen Klassen erben können.
+
+Aber eins nach dem anderen. Ein Entwickler kann eine Klasse definieren mit Variablen (Member) und Funktionen (Methoden). Das hilft sehr gut die fachliche Domäne abzubilden. Normalerweise haben Dinge in der echten Welt eben auch Eigenschaften und bestimmt Fähigkeiten. Ein Auto z.B. hat Farbe, Anzahl Türen, Pferdestärken. Das sind die Eigenschaften des Autos. In Programmiersprachen nutzen wir für das Speichern der Daten eben Variablen oder eben Member genannt. Ein Auto hat aber auch Fähgkeiten wie Fahren, Rückwärts einparken, Navigieren. Das wird über Funktionen oder eben Methoden genannt abgebildet. Der Unterschied zur strukturierten Programmierung ist also dass man Daten und Funktionen zusammenfassen kann, was den Code nochmal lesbarer und einfacher macht. So sieht eine Klasse Auto Java aus:
+```
+class Auto {
+	String hersteller;
+	int ps;
+	int tueren;
+	int geschwindigkeit
+
+	//Code der fahren imitiert, also die Geschwindigkeit erhöht
+  public void fahren() {
+	  //das Schlüsselwort this verweist auf die Members
+		this.geschwindigkeit += 1
+	}
+
+	public void selbststaendigEinparken() {
+		…
+	}
+}
+```
+
+In Objektorientierung kann man Klassen von anderen Klassen erben lassen. Die Kindklasse erbt alle Members und Methoden der Vaterklasse und kann diese erweitern oder auch anpassen. Das kann man wieder mit der realen Welt vergleichen. Autos haben viele Eigenschaften oder Fähigkeiten gemeinsam. Jedes Auto kann fahren, wenn es diese Fähigkeit verliert, ist es kaputt und jedes Auto hat einen Motor der eine bestimmte Stärke aufweist, gemessen in KW oder Pferdestärken. Aber trotzdem gibt es viele verschiedene Arten von Autos, die unterschiedliche Fähigkeiten bieten wie Rückfahrkamera oder selbständiges Fahren. Um das abzubilden kann man die Vererbung einsetzen.
+
+```
+class SelbstfahrendesAuto extends Auto {
+  public float selbststaendigFahren() {
+		…
+	}
+}
+```
+
+Die Klasse SelbstfahrendesAuto erbt alle Member und Methoden wie  geschwindigkeit und fahren() die in der Klasse Auto definiert sind und hat zusätzlich die neue Methode selbststaendigFahren. Eine abgeleitete Klasse nennt man auch Spezialisierung. Dieses Konstrukt hilft nochmal mehr die Komplexität der realen Welt in Code abzubilden.
+
+Jetzt noch ein Konzept das in dem Zuge auch wichtig ist. Der Polymorphismus. SelbststaendigFahren ist auch vom Typ Auto und alle anderen Autotypen die von Auto abgeleitet sind auch Autos und können wie ein Auto behandelt werden. Polymorphismus erlaubt es uns damit Listen von Autos abzuspeichern, die aber alle von einem unterschiedlichen Spezialisierungen sind. Wenn Sie z.B. ein Autohaus besitzen und Sie wollen Ihre Autos endlich mit einem Programm verwalten, dann wollen Sie wissen welche Autos insgesamt haben Sie auf dem Geländen stehen. Der Entwickler programmiert also eine Ansicht in der Sie alle Autos aufgelistet bekommen:
+
+Ein gutes weiteres Beispiel ist z.B. wenn man Artikel unterschiedlicher Art verkauft. Alle Artikel haben einen Preis aber es ist ein Unterschied ob man ein T-Shirt oder eine PC verkauft. Am Ende ermöglicht es der Polymorphismus aber, dass eine Funktion die den Gesamtpreis eines im Warenkorb ermittelt das überhaupt nicht interessiert welche Spezialisierung er hier verarbeitet. Alle Objekte im Warenkorb sind Artikel also bekommt man den Preis und kann die Gesamtsumme addieren egal welche Artikel da drin stehen.
+
+Damit ist es wunderbar möglich die fachliche Domäne in Code umzusetzen. Man überlegt sich die Entitäten die es in der Domäne gibt und baut sich eine Struktur an Klassen auf indem man mit Vererbung arbeitet aber auch mit der Möglichkeit dass Klassen andere Klassen beinhalten können. Also wenn man eine Klasse Rechnung definiert und eine Klasse Artikel muss es ja einen Querverweis geben. Also Klasse Rechnung beinhaltet eine Liste von Klasse Artikel wobei es unterschiedliche Arten von Artikel gibt. Interessiert das die Rechnung? Normalerweise nicht, wir nutzen Polymorphismus, die Rechnung hat eine Liste von Artikeln ob das ein T-Shirt ist oder ein PC ist der Rechnung egal.
+
+Die Aufteilung der Daten in Klassen ist eine wichtige Aufgabe und sollte von erfahrenen Entwicklern oder Softwarearchitekten vorgenommen werden. Das Ergebnis nennt man auch Datenmodell. Und niemals mit der Vererbung übertreiben. Das Konzept kann helfen aber auch Chaos fabrizieren.
+
+Ein weiteres Sprachelement, dass man in dem Zuge eingeführt hat: Das Interface. Ein Interface definiert ein Verhalten und bringt keine Funktionalität und auch keine Members mit. Wenn ich eine Klasse von einem Interface erben lasse, gehe ich die Verpflichtung ein, dass ich das Verhalten das definiert wurde auch umgesetzt habe. Das nennt man auch Contract. Hier setzt wieder der Polymorphismus ein. Eine Funktion muss nicht die konkrete Klasse kennen, es reicht das Interface. Interfaces sind eine super Möglichkeit seine Software zu strukturieren und testfähig zu entwickeln.
+
+```
+/* Man definiert ein Interface mit dem Namen IGesamtSumme und jede Klasse die sich davon ableitet muss diese Funktion BerechneGesamtSumme() implementieren */
+interface IGesamtSumme {	
+	float BerechneGesamtSumme();
+}
+
+class Bestellung implements IGesamtSumme {
+	public float BerechneGesamtSumme() {**
+		…
+	}
+}
+
+/* Damit kann man in anderen Klassen das Interface als Member deklarieren */_
+class Kunde {
+	IGesamtSumme bestellungen;
+}
+```
+ 
+OOP kann einem Projekt unglaublich gute Dienste leisten aber das Projekt auch ins totale Choas stürzen. Deswegen wurden die SOLID Regeln entwickelt die wichtig sind, damit man keine unwartbare Software bekommt.
+
+[Single-responsibility principle](https://en.wikipedia.org/wiki/Single-responsibility_principle)
+
+Eine Klasse soll nur eine Verantwortung haben. Früher gab es oft den Fall, dass sogenannte Gottklassen programmiert wurden. Also eine Klasse die alle Anforderungen erfüllt hat, riesengroß und unwartbar (und ja die heißen wirklich Gottklassen). Man sollte eine sinnvolle Aufteilung der Klassen finden und die Klassen sollten nicht besonders groß sein.
+
+[Open–closed principle](https://en.wikipedia.org/wiki/Open%E2%80%93closed_principle)
+
+Eine Klasse soll offen sein für Erweiterung aber geschlossen gegen Modifikationen. Modifikationen führen oft zu Bugs. D.h. man programmiert seine Klassen so dass man die bestehenden Funktionen erweitern kann ohne sie modifizieren zu müssen.
+
+[Liskov substitution principle](https://en.wikipedia.org/wiki/Liskov_substitution_principle)
+
+Wenn sie schon eine Vererbung in einer Klasse einbauen, dann soll die Kindklasse doch bitte ein ähnliches Verhalten zeigen wie der Elternklasse.
+
+[Interface segregation principle](https://en.wikipedia.org/wiki/Interface_segregation_principle)
+
+Ein Interface soll nur EIN spezielles Verhalten definieren. 
+
+[Dependency inversion principle](https://en.wikipedia.org/wiki/Dependency_inversion_principle)
+
+Klassen sollten nie anderen Klassen direkt instanziieren, sondern immer nur Interfaces nutzen. Nachdem aber Interfaces nur ein Verhalten modellieren aber nicht im Speicher selber abgebildet werden muss man ein Framework nutzen welche das für einen regelt. Das nennt man dann Dependency Injection.
+
+Die SOLID Regeln sind immer eine gute Frage in einem Vorstellungsgespräch!
+
+Exceptions
+
+Bei Softwareentwicklung gibt es zwei Arten von Fehlern. Einige Fehler können beim Kompilieren der Software gefunden werden sogenannte compile errors. Das sind Fehler in der Grammatik oder wenn man Funktionen falsch aufruft. Wenn Sie z.B. versuchen einem Integertypen einen String zuzuweisen wird Ihr Compiler das Programm nicht übersetzen. Es gibt aber auch Laufzeitfehler, also Fehler die während das Laufens eines Programms auftreten. Beispiele:
+- Eine Datei die man benötigt befindet sich nicht mehr auf der Festplatte
+- Eine Netzwerkverbindung schlägt fehl
+- Der Speicher ist voll
+
+Das führt alles dazu, dass man in einen Fehler im Programm läuft. Und Fehlerhandling im Code ist etwas dem man besonderen Augenmerk zuwenden muss. Der Entwickler kann aber manchmal voraussehen was für Fehler auftreten könnten und muss die Stellen entsprechend absichern und manchmal ist ein sauberes Herunterfahren des Programms mit einer sprechenden Fehlermeldung die einzige Möglichkeit. Exceptions helfen einem dabei auf Fehler zu reagieren und die Fehlerbehandlung von dem Code zu trennen der normalen Aufgaben erledigt. Das macht den Code lesbarer. Wenn eine Exception auftritt, weil ein Fehler passiert und man diesen nicht behandelt wird das Programm vom Betriebssystem abgebrochen.
+
+In Java sieht das so aus:
+
+```
+/*try ist das Schlüsselwort und tut das was try aussagt: Probiere mal folgenden Code, wenn etwas schief läuft dann führe den Code im catch block aus*/
+
+try {
+	File file = new File("C:\\demo\\demofile.txt");
+	//Do something with file
+	...
+}
+
+/*catch ist das Schlüsselwort das den Code für die Fehlerbehandlung beinhaltet. Über die Art der Exception gibt man an welchen Fehler man hier behandeln will, man kann mehrere catch Anweisungen schreiben.*/
+catch (FileNotFoundException e) {
+	System.out.println(„Die Datei ... wurde nicht gefunden“);
+}
+
+/*Hier würden alle Exceptions behandelt die auftreten können außer FileNotFoundException weil die oben behandelt wird*/
+catch (Exception e) {
+	e.printStackTrace()
+}
+
+Es ist oft sehr verlockend um das gesamte Programm eine Try – Catch Anweisung zu schreiben die alle Exceptions abfängt, damit das Programm nie abstürzt. Wird oft gemacht, ist oft eine schlechte Idee, weil es das Programm in einen undefinierten Zustand hinterlassen kann. Was soll denn passieren, wenn kein Speicher mehr verfügbar ist? Das würde dazu führen, dass unkontrolliert an allen Stellen im Programm die Funktionen einfach abgebrochen werden können. Das kann ihr Programm und Ihre Daten korrumpieren. Dann stoppen Sie das Programm lieber und starten es neu.
+
+Fehlerbehandlung kostet Zeit und wird oft zu wenig Aufmerksamkeit geschenkt. Man kann auch nie alle Fehlerfälle abfangen. Loggen die die Exceptions auf ein geeignetes Medium, zeigen Sie noch eine Fehlermeldung an, wenn möglich und beenden Sie das Programm. Wenn Sie einen Service haben, dann installieren Sie diesen so, dass er automatisch wieder neu gestartet wird. 
+
+Damit haben wir die wichtigsten Konzepte der Programmiersprachen erwähnt. Widmen wir uns weiteren Themen rund um die Softwareentwicklung zu.

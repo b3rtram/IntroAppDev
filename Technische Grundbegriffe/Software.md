@@ -1,0 +1,45 @@
+Software
+
+Welche Operationen eine CPU ausführen kann, liegt, wie wir gesehen haben, an den logischen Schaltungen welche die CPU bereitstellt. Das nennt man den Befehlssatz der CPU ( Assembler-Befehlssatz x86) und genau da kommt die Software ins Spiel.
+
+Eine CPU kann einen Ablauf von Befehlen abarbeiten. Diese Befehle denkt die CPU sich nicht selber aus, sondern diese Befehle muss man ihr geben. Ein Ablauf von Befehlen nennt man Software. Hardware ist sehr generisch aufgebaut, d.h. es ist nicht für eine bestimmte Aufgabe geschaffen und wartet erst mal darauf, dass es was zu tun bekommt. Natürlich gibt es Ausnahmen, aber normale CPUs haben keine bestimmte Aufgaben. Die Aufgabe wird der CPU durch Software gegeben.
+
+Es gibt verschiedene Arten von Software:
+
+- Bios
+- Betriebssystem 
+- Anwendungen
+- Spiele
+- Services
+- Embedded Software
+- KI
+- …
+
+Alle Arten von Software unterscheiden sich in der Entwicklung, der Architektur, den Prozessen, den verwendeten Programmiersprachen. Viele Dinge überschneiden sich, allerdings muss eine Software die im Flugzeug läuft oder die die Bestrahlung im Medizinbereich steuert ganz anders abgesichert sein, als eine Webseite wo Menschen miteinander chatten können. Wir gehen in diesem Buch meistens von der Anwendungsentwicklung aus, also im weitesten Sinne Apps in Unternehmen oder Privatsektor die vom Menschen bedient werden wie eine Rechnungsschreibung. Diese sind am einfachsten umzusetzen und kommt in Digitalisierung von Prozessen in Unternehmen häufig vor. Und wer vor hat selbstfahrende Autos zu entwickeln, sollte dieses Buch nicht benötigen.
+
+Gehen wir auf die wichtigsten Softwaretypen kurz ein:
+
+BIOS
+
+Das BIOS ist ein Programm welches direkt auf dem Motherboard fest verdrahtet ist. Wenn der PC eingeschaltet wird lädt sich das BIOS automatisch und wird abgearbeitet. Es führt Diagnosen durch, initialisiert die Hardware und lädt von der Festplatte oder eine andere bootfähige Hardware die erste Software. Diese Software muss an einer bestimmten Stelle auf der Festplatte abgelegt sein. Das BIOS lädt diese in den Speicher und weist die CPU an die Befehle die in der Software stehen auszuführen. Das ist dann im Normalfall das Betriebssystem. Klingt kompliziert, ist es auch. Das Programm schreibt man nicht selber, das kommt vom Hardwarehersteller.
+
+Betriebssystem
+
+Dem Betriebssystem (Operating System / OS) kommt eine spezielle Rolle zu. Auch wenn es möglich ist eine Software direkt am PC ohne Betriebssystem laufen zu lassen ist das nicht sehr sinnvoll. Betriebssystem nehmen den Programmen die darauf laufen wirklich viel Arbeit ab und ermöglichen es auch mehrere Programme gleichzeitig laufen zu lassen. Betriebssysteme sind sehr komplexe Konstrukte, deswegen gibt es nicht so viele auf dem Markt. Windows, Unix, Linux, MacOS sind die bekanntesten und für mobile Endgeräte Android und IOS.
+
+Das Betriebssystem verwaltet die Hardware, d.h. sie kümmern sich um Netzwerkkarten, Monitor, USB Geräte, und ermöglichen Software auch den Zugriff auf die Hardware über Treiber, so dass man nicht wissen muss welche Hardware der Kunde verwendet. Ein Entwickler kann mit seiner Software über das OS z.B. auf eine Festplatte schreiben oder das Netzwerk nutzen, egal von welchem Hersteller die Geräte kommen. Außerdem verwaltet das Betriebssystem die Programme die gleichzeitig laufen (Prozesse) und weisen diesen die Rechenleistung zu. Die meisten Betriebssysteme bieten dem Nutzer eine grafische Oberfläche. Wenn Sie in Windows den Task-Manager öffnen sehen sie die Anzahl der Programme die gerade laufen und die das Betriebssystem verwaltet.
+
+Das Betriebssystems bietet der Software viele Dienste an die man aus seinem Programm direkt aufrufen kann. Somit kann eine Software über das OS auf die Hardware zugreifen. Dazu gehören so Dinge wie:
+- Starten eines Fensters auf dem Monitor
+- Zugriff auf die Netzwerkkarte
+- Schreiben und Lesen von der Festplatte
+- aber auch Möglichkeiten Prozesse zu verwalten oder neue zu starten
+- und und und
+
+Nachdem diese Funktionen in jedem Betriebssystem anders aussehen, sind Programme übergreifend nicht kompatibel, d.h. man kann ein Programm, das für Linux programmiert ist, nicht auf Windows laufen lassen. Aber wie überall gibt es auch hier Ausnahmen. Nur der vollständigkeithalber: Es gibt Programmiersprachen die installieren auf den PCs eine Software die die Programme ausführen und zur Laufzeit an das Betriebssystem anpassen. 
+
+Apps
+
+Hardware, BIOS und Betriebssystem sind als Basis nötig um überhaupt mit Computer etwas Sinnvolles anstellen zu können. Aber einen direkten Nutzen hat ein Benutzer dadurch noch nicht. Dazu gibt es Anwendungen oder auch Apps. Das sind einfach die Programme die wir starten und mit der wir etwas tun können um uns das Leben zu erleichtern, z.B. ein Taschenrechner oder ein Textverarbeitungsprogramm. Diese Programme, die wir normalerweise über einen Doppelklick auf der Betriebssystemoberfläche starten sind Dateien in der Programmcode steht. In Windows sind das Dateien mit der Dateiendung .exe. Das Betriebssystem registriert, dass wir eine .exe Datei geklickt haben und startet das Programm in dem es Speicherplatz reserviert, für den Programmcode einen geschützten Speicherbereich anlegt, den Programmcode dahin kopiert und dann anfängt den Programmcode laufen zu lassen. Das nennt man auch einen Prozess.
+
+Einen Prozess kann man grob in zwei Kategorien einteilen. Ein Service ist ein Programm das im Hintergrund läuft, Hintergrundprozesse genannt, die keine Oberfläche für einen Nutzer bieten. Diese Programme erledigen Aufgaben im Hintergrund und stellen anderen Programmen ihre Dienste zur Verfügung. Das kann eine Datenbank sein die Daten von anderen Anwendungen super schnell auf einer Festplatte speichert oder ein Dienst der die Bluetoothverbindungen im Hintergrund verwaltet. Die andere Art sind Programme die mit dem Menschen interagieren können. Z.B. über eine Oberfläche oder über Kommandozeile. Diese nennen wir normalerweise auch Apps. Darunter fallen die ganzen Office Produkte, Rechnungsschreibungen oder auch Spiele. Später werden wir sehen, dass es häufig vorkommt, dass man Services und Apps in der Software Entwicklung miteinander kombiniert. Um Software erstellen zu können muss man diese entwickeln. Dazu benötigt man normalerweise eine Programmiersprache.
