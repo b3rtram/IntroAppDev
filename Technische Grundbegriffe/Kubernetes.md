@@ -1,0 +1,9 @@
+Kubernetes
+
+Um eine weltweit skalierende Software wie die großen Softwarehersteller zu programmieren, gibt es aktuell eine neue Entwicklung, und zwar Kubernetes. Kubernetes verwaltet Server und kümmert sich darum, dass Container je nach Anfragen von Nutzern auf die Server so verteilt werden, dass auch sehr viele Anfragen oder Anfragespitzen abgearbeitet werden können. Damit können Sie prinzipiell weltweit skalierende Software für Millionen von Benutzer zur Verfügung stellen.
+
+Als skalierbare Software bezeichnet man eine Software, die eine stark wechselnde Frequenz an Anfragen und Daten verarbeiten kann. D.h. wenn die Software 100 Nutzer oder 1 Millionen Nutzer gleichzeitig bedienen kann, könnte man das eine skalierbare Software nennen. Dabei gibt es zwei Arten von Skalierung:
+
+In der **Vertikalen Skalierung** erhöht man die Hardwareressourcen. Der PC auf dem das Programm läuft bekommt mehr Speicher, neue CPU oder eine schnellere Netzwerkverbindung. Damit kann das Programm mehr Daten und Anfragen in kürzerer Zeit verarbeiten. Diese Skalierung kommt sehr schnell an seine Grenzen.
+
+In der **Horizontale Skalierung** verteilt man die ankommende Last auf mehr Server. Damit ist theoretisch eine unendliche Skalierung möglich. Diese Art der Software ist schwieriger umzusetzen aber gerade in Webtechnologien sehr wichtig. Neue Technologien zielen sehr stark auf diese Art von Skalierung ab.

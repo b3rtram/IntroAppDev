@@ -1,0 +1,98 @@
+Datenbanken
+
+Die meisten Anwendungen benötigen eine Persistierung der Daten. D.h. dass die Daten auf der Festplatte gespeichert werden und auch beim Schließen und Öffnen der Anwendung wieder vorhanden sind. Dazu kann man selber die Daten in Dateien speichern, das wird aber relativ schnell aufwendig und ineffizient. Deswegen nutzt man in der Softwareentwicklung Datenbanken. Das sind Services die Daten sehr effizient auf die Festplatte schreibt und auch wiederfindet. Auf die Daten kann man über die API zugreifen und CRUD Operationen ausführen kann:
+
+- **C**reate, das Schreiben von neuen Daten
+- **R**ead, das Lesen von einem oder mehreren Werten. Dazu gibt es oft vielfältige Filtermöglichkeiten
+- **U**pdate, das Verändern von schon vorhandenen Daten
+- **D**elete, das Löschen von Daten
+
+Die meisten Datenbanken erlauben es mehrere Replikationen anzulegen. Das bedeutet, dass man eine Datenbank über mehrere Server verteilt. Die Replikationen synchronisieren sich ständig so dass man eine vertikale Skalierung hinbekommt. Wenn Sie z.B. eine Messanger App mit Millionen Nutzern gleichzeitig schreiben möchten kommen Sie um sowas nicht herum.
+
+Die Datenbanken nehmen gerade in der Applikationsentwicklung eine sehr zentrale Rolle ein. Deswegen ist wichtig hier die richtige Datenbank auszuwählen.
+
+Es gibt verschiedene Arten von Datenbanken und eine Einteilung ist SQL und NoSQL Datenbanken.   
+
+- SQL ist die Abfragesprache die sich hartnäckig seit Jahrzehnten hält
+- NoSQL heißt „Not only SQL“, diese Datenbank haben oft eigene Abfragesprachen unterstützen teilweise aber auch SQL.
+1. 
+
+Betrachten wir die vier Haupttypen von Datenbanken, wobei die am häufigste verwendete die relationale Datenbank ist. Somit werden wir diese genauer betrachten. Die anderen werden wir nur kurz anschneiden.
+
+Relationale Datenbanken
+
+Relationale Datenbanken legen die Daten in Tabellen ab, die man miteinander verknüpfen kann. Die Verknüpfung nennt man auch Relation. Die Tabellen müssen modelliert werden. Die Spalten der Tabelle bekommen einen bestimmten Namen und einen Typen zugewiesen. Man kann keine Daten in die Datenbank schreiben die nicht mit den Tabellendefinitionen exakt übereinstimmen. Wenn man über Anforderungen das Datenbankschema ändern möchte muss man je nach Art der Änderung die Daten migrieren, also SQL Skripte schreiben die eine neue Tabelle anlegen oder eine Spalte ändern oder auch Daten umkopieren. Das kann eine Weile dauern und dazu führen, dass Ihre Applikation lange benötigt um zu starten.
+
+Datenmodellierung:
+
+Auf die Modellierung des Datenmodells in relationalen Datenbanken legen Entwickler immer besonders großen Wert. Hier wird mit einem Entity – Relationship – Model die Tabelle und ihre Relationen festgelegt. Hier gibt es Regeln die es zu beachten gilt, sogenannte Normalformen. Müssen Sie sich nicht merken, Hauptsache sie haben es mal gehört. Z.B. möchte man das obige Beispiel Kunde, Artikel und Bestellung als relationales Datenbankmodell designen würden drei Tabellen herauskommen:
+
+Abbildung 21 ER - Modell
+
+ 
+
+Man könnte prinzipiell wie in Excel auch alles in eine Tabelle schreiben würde aber zu einer massiven Redundanz der Daten führen. Also wenn man Bestellung und Kunde in eine Tabelle packt hätte man den Kundenamen pro Bestellung einmal kopiert.
+
+Die Relationen sind als Verbindungen zwischen den Tabellen dargestellt. In Wahrheit sind das Nummern oder IDs. D.h. ein Kunde bekommt eine eindeutige Nummer auch Primary Key genannt. Eine Bestellung bekommt auch eine eindeutige Nummer aber zusätzlich die Nummer des Kunden in einer Spalte eingetragen so dass man die Zuordnung hat. Die Relationen nennt man auch Foreign Keys oder Referenzen.
+
+In dem Beispiel steht jetzt z.B. der Kunde Florian mit der ID 1 hat eine Bestellung (Spalte KDNR) mit der ID 3 ausgelöst und da 5 Stück eines Artikels mit der ID 1 bestellt, eine Hose. 
+
+Dieses Datenbankmodell das wir hier gewählt haben hat mehrere Probleme: 
+
+- Sie können jetzt in dem Zustand bei der Bestellung nicht einfach ein Datum speichern ohne nicht vorher die Tabelle zu ändern. Das bedeutet eine Migration der Tabelle weil relationale Datenbanken ein striktes Schema haben von dem Sie nicht abweichen können
+- Wenn sich der Name eines Kunden ändert würde sich das auf alle Bestellungen auswirken die jemals von dem Kunden getätigt würde. Das darf in dem Fall natürlich nicht passieren
+- Artikel haben so viele unterschiedliche Attribute die können Sie nicht alle als Spalte in das Schema mit aufnehmen können. Deswegen haben E-Commerce Systeme die mit relationalen Datenbanken arbeiten alleine für die Artikel mit den Attributen 6 Tabellen.
+
+Nachdem man Daten immer Tabellen aufteilt, kann es vorkommen, dass man für einen Datensatz mehrere Schreibbefehle auslösen muss. Wenn man in 3 Tabellen Daten schreibt und 1 Schreibbefehl fehlschlägt dann hat man inkonsistente Daten. Deswegen gibt es sogenannte Transaktionen in dem man mehrere Befehle zusammenfasst und erst wenn alle Befehle wirklich funktioniert haben kann man mit einem Commit das endgültige Speichern veranlassen.
+
+Wenn Sie eine Applikation haben die viele Daten in kurzer Zeit wegspeichern muss, kann es sein, dass Sie von der Normalform abweichen müssen und Tabellen denormalisieren müssen. (Diesen Begriff gibt es tatsächlich). Sie schreiben die Daten einfach in eine große Tabelle und akzeptieren die Redundanzen die darin vorkommen können. Wenn Sie die Daten aufteilen auf mehrere Tabellen wollen, müssen Sie eine Transaktion starten und mehrere Schreibbefehle auslösen. Das kann bei vielen Daten zu Verzögerungen führen.
+
+Die Befehle die man auslöst werden in der Sprache SQL geschrieben, hier ein paar Beispiele:
+
+„SELECT * FROM Bestellung“
+
+Man bekommt eine komplette Liste aller Einträge in der Tabelle Bestellungen
+
+„SELECT * FROM Kunde INNER JOIN Bestellung ON Kunde.ID=Bestellung.KDNR“
+
+Man verknüpft die Tabelle Kunde mit der Tabelle Bestellung und bekommt eine komplette Liste aller Bestellungen mit zugehörigen Kundennamen
+
+„SELECT * FROM Kunde INNER JOIN Bestellung ON Kunde.ID=Bestellung.KDNR WHERE Kunde.ID = 1“
+
+Man filtert auf alle Bestellungen auf den Kunden mit der ID 1. Man kann auch auf Namen filtern
+
+„INSERT INTO Artikel (Name) VALUES (‚Buch‘)“
+
+Man fügt einen neuen Wert in die Tabelle Artikel mit dem Namen Buch. Die ID wird automatisch generiert wenn man das möchte
+
+„UPDATE Artikel SET Name=“DochKeinBuch“ WHERE ID=1“
+
+Man ändert den Namen des Artikels mit der ID 1 wird auf DochKeinBuch geändert. Wenn man das WHERE weglässt updatet man alle Artikel auf einmal.
+
+„DELETE Artikel WHERE ID = 1“
+
+Löscht den Artikel ID 1 ist. Hier müssen Sie aufpassen, dass wenn Sie einen Artikel löschen aber in der Bestellung hier noch eine Relation (auch Referenz genannt) haben, dann haben Sie eine Inkonsistente Datenbank.
+
+Ein Entwickler muss in seinem Programm Strings generieren die SQL-Befehle darstellen und das ganze über die Datenbank API an die Datenbank schicken. Das ist umständlich deswegen gibt es sogenannte OR-Mapper. Das sind Libraries die einem Entwickler Tabellen aus der Datenbank mit Objekten in seiner Programmiersprache mappen. Dann muss sich der Entwickler nicht mehr selber darum kümmern, wie man SQL-Befehle generiert.
+
+Zusätzlich dazu gibt es in den meisten relationalen Datenbanksystemen die Möglichkeit Stored Procedures zu schreiben. Das sind Funktionen die mit SQL programmiert werden und innerhalb der Datenbank laufen. 
+
+Mit Stored Procedures wurden Anfang 2000er Jahre viele Applikationen sehr schnell umgesetzt. Allerdings sollten Sie das unbedingt vermeiden wo Sie können. Das wird nach einigen Jahren in Probleme führen. SQL bietet einfach nicht genug Features um eine geeignete Software Architektur aufzusetzen für komplexe Applikationen. Außerdem verlieren Sie die Skalierbarkeit Ihrer Software und automatische Tests sind schwieriger umzusetzen.
+
+Document based
+
+Dokumentbasierende Datenbanken arbeiten nicht mit Relationen und auch nicht mit Tabellen. Es gibt Collections. Man kann z.B. eine Collection mit dem Namen Artikel anlegen. In diese Collection kann man jetzt JSON abspeichern. Dieses JSON ist aber Schemalos, d.h. man muss die Struktur vorher nicht modellieren und festlegen. Hier werden einfach JSON Objekte gespeichert. Die Datenbank geht einfach davon aus, dass der schreibende Prozess weiß, was er da reinschreibt. 
+
+Sehen Sie wo der Charme liegt in schemaloses Speichern von Daten im JSON – Format? Bei Artikeln können Sie einfach die Attribute so festlegen ohne sich um ein Schema kümmern zu müssen. Sie können alle Artikel egal welche Attribute diese haben in eine Collection packen und mit einem Lesebefehl alle Artikel auslesen. Das würde über eine relationale Datenbank nicht so einfach funktionieren. Document based Datenbanken sind geeignet, um schnellen Fortschritt am Anfang eines Projektes zu erzeugen. Sie müssen sich nicht um ein Datenbankmodell kümmern und bei Änderungen müssen das Schema nicht anpassen. Gerade am Anfang eines Projekts ändert sich das Datenmodell sehr oft. Aber es können auch mehr Fehler auftreten, weil die Datenbank sich nicht um das Schema kümmert und Sie so nicht immer sicher sein können, dass die Daten in dem Format vorliegen, welches sie erwarten.
+
+Diese Datenbanken legen jetzt auch nicht so sehr viel Wert auf Konsistenz der Daten so dass Sie sehr gut vertikal skalieren. Es kann Ihnen passieren, dass ein Wert in Replikation 1 gespeichert wird und dieser erste ein paar Sekunden danach in allen Replikationen vorhanden ist.
+
+Graph Datenbanken
+
+Graphen sind in der Informatik Gebilde die aus zwei Dingen besteht. Knoten und Verknüpfungen. Die Verknüpfungen können eine Richtung haben und gewichtet sein. Manchmal macht es Sinn so etwas einzusetzen. Z.B. wenn Sie ein Navigationssystem bauen möchten. Straßen sind Verknüpfungen, die eine Richtung haben und mit einem Wert gewichtet sind. Kreuzungen sind Knoten. So können Sie mit verschiedenen Algorithmen einen Weg von A nach B finden.
+
+Das wird vor allem da eingesetzt, wo es komplexe Abhängigkeiten zwischen vielen Objekten gibt. Graph Datenbanken sind sehr gut geeignet solche Daten zu speichern. 
+
+Big table
+
+Reden wir von Big Data, also das Erfassen von vielen Daten reden wir über Big Table Databases. Diese Datenbank sind dafür ausgelegt sehr viele Daten zu schreiben und zu verarbeiten. Hier gibt es auch Tabellen aber diese werden anders modelliert. Sie können bei diesen Datenbanken auch nicht so einfach ein Update eines bestimmten Datums machen, da ein Update immer das Durchsuchen der Daten und das Schreiben beinhaltet. Das würde das Wegschreiben von vielen Daten sehr langsam machen.   

@@ -1,0 +1,66 @@
+Datenaustauschformate
+
+Wenn man über APIs redet, muss man auch über Datenaustauschformate reden. Wenn zwei Programme miteinander reden, muss die Information, die ausgetauscht wird von beiden Programmen verstanden werden. Hier redet man über die Semantik der Daten. Die Daten die Programm A an Programm B schickt muss ja von Programm B verstanden werden. Dazu gibt es ein paar Formate die solche Daten standardisieren. Hier die wichstigsten:
+
+
+JSON
+
+JSON JavaScript Object Notation kommt aus der Sprache JavaScript und hat sich als universelles Datenaustauschformat für APIs durchgesetzt. Der Aufbau ist recht einfach:
+
+{ markiert den Anfang eines Objektes
+
+} markiert das Ende eines Objektes
+
+[ markiert den Anfang einer Aufzählung
+
+] markiert das Ende einer Aufzählung
+
+Wenn ein Service Artikeldaten bereitstellt dann könnte die so aussehen. Ein Wert definiert sich durch die Bedeutung des Wertes, also Name oder Preis und dem dazugehörigen Wert durch : getrennt
+
+```json
+{
+	"ArtikelNummer": "1039484747",
+	"Name": "Hose",
+	"Preis": 10.99,
+	"Farbe": "gelb",
+
+}
+```
+
+Man kann aber auch Subobjekte definieren:
+
+```json
+{
+	"ArtikelNummer": "1039484747",
+	"Name": "Hose",
+    "Preis": 10.99,
+	"Attribute": [
+		{
+			"Key": "Größe",
+			"Value": 36
+		},
+		{
+			"Key": "Farbe",
+			"Value": "Blau"
+		}
+	]
+}
+```
+
+XML
+
+In XML nutzt man Tags um Daten zu beschreiben. Ein Tag beschreibt die Bedeutung des Wertes und innerhalb des Tags steht der Wert. Man kann verschachtelte Tags schreiben.
+
+```xml
+<Artikel>
+<ArtikelNummer>1039484747</ArtikelNummer>
+	<Name>Hose<Name/>
+	<Preis>10.99<Preis/>
+	<Attributes>
+		<Attribute key=”Größe”>36</Attribute>
+		<Attribute key=„Farbe“>Blau</Attribute>
+	</Attributes>
+</Artikel>
+```
+
+Gibt noch mehr modernere Datenaustauschformate wie protobuf oder apache avro. Es lohnt sich diese in einem Projekt, wo viele Services intensiv miteinander kommunizieren müssen diese Formate genauer anzusehen.

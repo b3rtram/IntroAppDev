@@ -1,0 +1,5 @@
+Continuous Deployment
+
+Wenn man jetzt eine Building Pipeline für das Continuous Integration gebaut hat, dann kann man auch noch einen Schritt weiter gehen und das Deployment, also das Bereitstellen eines Releases in die Building Pipeline einbauen. Das nennt man dann Continuous Delivery und im gesamten eine CI/CD – Pipeline.
+
+Der ganze Prozess vom Code einchecken hin bis zum Bereitstellen zum Kunden wird damit automatisiert und spart, wenn es gut funktioniert, richtig viel Zeit. Einer der Gründe warum manche Firmen Feature um Feature generieren die auch noch gut funktionieren. Neue Features werden direkt nach dem Erstellen direkt an den Kunden ausgeliefert. Es gibt tatsächlich Untersuchungen die zeigen, dass umso öfters man deployed, umso stabiler ist die Software. Das funktioniert vor allem im Webumfeld sehr gut. Bei OnPremise – Software ist das schwieriger da man nicht jeden Tag mehrere Updates beim Kunden möchte. Deswegen sammelt man hier etwas länger und stellt neue Release Versionen zur Verfügung. Bei einer Webseite merkt der Kunde gar nicht, dass es ein Update gegeben hat. Deswegen werden viele Anwendungen im Webumfeld programmiert.

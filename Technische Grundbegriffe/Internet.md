@@ -1,0 +1,55 @@
+Internet
+
+Das Internet wurde in den 70er Jahren erfunden und hat heute einen sehr hohen Stellenwert in der Welt. Wenn Sie sich mit Digitalisierung beschäftigen müssen Sie sich mit dem Internet beschäftigen und dessen Möglichkeiten. Deswegen gehen wir hier auf auch etwas detaillierter auf diese Technik dahinter ein.
+
+Die meiste Hardware die wir kaufen verfügt eine Möglichkeit sich mit einem Netzwerk zu verbinden, sei es über Kabel, Wlan oder Mobilfunk. Die Netzwerkverbindung ist in mehrere Ebenen aufgebaut das sogenannte OSI ISO 7 Schichtenmodell Auf jeder Schicht gibt es verschiedene Protokolle mit verschiedenen Anwendungsfällen die es benötigt damit das Internet weltweit Dienste bereitstellen kann.
+
+Die Schicht 1 definiert wie man mit Kabel, Wlan oder Mobilfunk interagieren muss um eine Verbindung zu bekommen. Die Schichten 2 bis 4 sind nur dazu da um überhaupt die Kommunikation über das Internet zu ermöglichen. Hier sind lokale und globale Adressen enthalten und je nach Protokoll Informationen über die aktuelle Kommunikation, wie die Reihenfolge der Pakete oder auch dass Pakete, die verloren gegangen sind noch einmal angefordert werden. Jede Schicht hat ihre eigenen Protokolle für verschiedene Verwendungszwecke und beinhaltet als Datenfeld die Protokolle der nächsten Schicht.
+
+1. Physik
+
+Wie schon erwähnt handelt es sich hier um das Transportmedium welches die Daten transportiert, z.B. Kabel oder Funk.
+
+2. Ebene Sicherung
+
+Jede Netzwerkkarte hat eine weltweit eindeutige Adresse die vom Hersteller vorgegeben ist, die sogenannte Mac-Adresse. Diese Adresse z.B. 00:80:41:ae:fd:7e wird zur Identifizierung der Netzwerkkarte verwendet, ist fix in der Netzwerkkarte verankert und ist global eindeutig. Die Netzwerkkarte nimmt auch nur Datenpakete an die mit dieser Adresse versehen sind. Hier wird meistens das Ethernet Protokoll verwendet. 
+
+3. Ebene Network
+
+Die Vermittlungsschicht führt eine neue Adresse ein, die IP-Adresse z.B. 192.168.0.101. Jeder Internetteilnehmer braucht eine Internetadresse. Auch wenn alle PCs über das Internet prinzipiell miteinander verbunden sind, wird das Konstrukt in Netzwerksegmente aufgeteilt. Will ich z.B. in meinem Haus mein Smartphone mit meinem Fernseher verbinden läuft diese Kommunikation nur über das Netzwerksegment in meinem Haus ab. Zur Verbindung aller Netzwerksegmente weltweit gibt es ein Gerät man Router nennt. Das hat jeder daheim der einen Internetanschluss hat. Über die IP – Adresse (und der zugehörigen Subnetzmaske) erkennt der PC ob der Zielrechner im gleichen Netzwerksegment ist.
+
+Wenn man jetzt die Anfrage an einen externen Netzwerkteilnehmer sendet, werden diese Daten an den Router geschickt. Der Router kümmert sich für die Weiterleitung der Anfrage. Alle Kommunikation in ein anderes Netzwerksegment. Alle Kommunikation innerhalb eines Netzwerksegments läuft direkt zwsichen den Netzwerkteilnehmer ab. 
+
+Nachdem die IP – Adressen nicht gut zu merken sind gibt es einen Dienst mit dem Namen DNS (Domain Name Server). Dieser löst die Webadressen die wir kennen und im Browser eingeben auf und wandelt diese in IP-Adressen um.
+
+Wenn man eine externe Webseite mit dem Browser aufruft passiert folgendes:
+
+1.1. Der PC fragt an einem DNS-Server nach und bekommt eine IP-Adresse zurück 
+1.1. Der PC schaut, ob die IP-Adresse in seinem Netzwerksegment liegt
+1.1. Wenn nicht schickt er die Anfrage an den Router
+1.1. Der Router versendet die Anfrage an weitere ihm bekannte Router. Die Router sind zusammengeschaltet und über die IP-Adresse findet das Paket durch die Router den Weg zu dem Ziel-Server.
+1.1. Der Ziel-Server schickt die Antwort und es geht den gleichen Weg zurück zur IP-Adresse des Routers. Der Router leitet die Antwort an den Rechner weiter, der die Anfrage ursprünglich gestartet hat. Der Router ist der einzige, im Heimnetzwerk der eine offizielle im Internet verfügbare IP-Adresse hat. Innerhalb des Routers werden Standard Subnetz IP-Adressen verwendet wie 192.168.0.200 oder 10.0.0.25
+
+Abbildung 18 Schematische Darstellung der Kommunikation
+
+4. Ebene Transport
+
+Die Transportschicht ist nochmal eine Schicht die für einen geregelten Ablauf der Pakete sorgt. Die Größe eines Paketes ist beschränkt. Man versendet in einem Paket maximal 1460 Bytes an Daten. Wenn man mehr Daten schicken möchte werden diese automatisch gesplittet. Diese Pakete können verloren gehen oder sich gegenseitig überholen. Die Transportschicht mit dem TCP Protokoll weist jedem Paket eine aufsteigende Zahl zu. Dann kann der Empfänger die Daten in den Paketen in die richtige Reihenfolge wieder zusammenfügen oder verloren gegangene Pakete nachfordern. Es gibt auf dieser Ebene auch andere Protokolle die für Gaming oder Streaming besser sind, weil es hier irrelevant ist, dass man die Pakete in der richtigen Reihenfolge bekommt bzw. ein Paket verloren geht. 
+
+Zusätzlich dazu führt TCP noch eine Nummer ein, die man **Port** nennt. Der Port ist dazu da, dass man über eine IP-Adresse mehrere Services anbieten kann. Wenn man z.B. auf einem Server eine Webseite und einen Mail-Server bereitstellen möchte, man hat aber nur die eine IP – Adresse, woher soll der PC wissen für welchen der Dienste das ankommende Datenpaket gedacht ist. Der Port ist eine Zahl von 1-65536 und gibt an welchen Dienst man ansprechen will.
+
+Erst innerhalb des TCP Protokolls kommen Anwendungsprotokolle wie HTTP oder IMAP zum Tragen und erst dann kommen die eigentlichen Nutzdaten.
+
+Abbildung 19 Über Ports kann man mehrere Netzwerkdienste auf einem Server laufen lassen
+
+Also nochmal zusammengefasst an einem Beispiel:
+
+Wir wollen eine Webseite besuchen, dazu gibt es zwei Teilnehmer, der Browser und der Webserver des Anbieters. Der Browser und der Webserver beide kommunizieren über das HTTPS Protokoll. Der Server verfügt über eine im Internet eindeutige IP Adresse und Webserver werden normalerweise mit dem Port 443 gestartet. Damit die Webseite einen sprechenden Namen hat beantragt man eine Domain wie z.B. endofweb.de. Diese Domain wird einer IP-Adresse zugewiesen und in den DNS -Servern gespeichert.
+
+Ein Nutzer der die Webseite besuchen möchte gibt im Browser den Domain Namen ein. Bei Eingabe des Domainnamens wird die IP-Adresse aufgelöst über einen DNS Server und eine Anfrage über den Router an die IP-Adresse mit dem Port 443 ausgelöst und zwar so wie das HTTPS Protokoll es vorschreibt. Die Antwort des Servers auf die Anfrage ist auch HTTPS konform und schickt die Webseite als Daten zurück. Die Daten werden in kleine Netzwerkpakte aufgeteilt die über das TCP Protokoll beim Empfänger wieder zusammengesetzt werden. Die Netzwerkanfrage kann über verschieden physikalische Medien wie Netzwerkkabel oder Wifi passieren. 
+
+Abbildung 20 Anfrage Webseite
+
+Datenbanken
+
+Die meisten Anwendungen benötigen eine Persistierung der Daten. D.h. dass die Daten auf der Festplatte gespeichert werden und auch beim Schließen und Öffnen der Anwendung wieder vorhanden sind. Dazu kann man selber die Daten in Dateien speichern, das wird aber relativ schnell aufwendig und ineffizient. Deswegen nutzt man in der Softwareentwicklung Datenbanken. Das sind Services die Daten sehr effizient auf die F

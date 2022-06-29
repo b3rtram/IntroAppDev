@@ -1,0 +1,13 @@
+Deployment
+
+Unter Deployment versteht man das Ausliefern der Applikation an den Kunden. Hier unterscheidet man grob zwischen zwei Möglichkeiten.
+
+OnPremise vs Online
+
+**OnPremise** sind Programme die direkt auf dem PC installiert werden, wie z.B. Officeprodukte oder auch Spiele. Die Installation geht über ein Installationsprogramm oder über den Store des Betriebssystems. Auf dem Betriebssystem müssen alle Abhängigkeiten installieren werden, die die App benötigt. Umso weniger Abhängigkeiten die App hat umso besser. Ein Programm das in Java programmiert ist, benötigt auf dem Rechner auch Java. Der Kunde muss aber aktiv die Installation anstoßen. Updates müssen auch aktiv angestoßen werden. Hier hat sich die letzten Jahrzehnte nur geändert, dass man nicht mehr CDs ausliefern muss, sondern dass das Installationsprogramm und Updates über das Internet bezogen werden.
+
+**Online** ist in dem Fall etwas spannender da Sie keine Installation beim Kunden benötigen, sondern der Kunde im Browser die Applikation öffnet. Der Browser ist eine Applikation welches basierend aus der Beschreibungssprache HTML, der Styles in CSS und der Programmiersprache Javascript komplexe graphische Userinterfaces (UI) anzeigen kann. Die UI wird dabei nicht einmal lokal installiert, sondern jedes Mal bei Benutzung neu von einem Server ausgeliefert. Der Kunde kann über eine URL im Browser diese Applikation nutzen. Wenn der Nutzer die URL eingibt, verbindet sich der Browser mit einem Server und bekommt die UI ausgeliefert. Der Vorteil ist, Sie müssen keine Updates beim Kunden ausrollen. Wenn Sie neue Funktionen haben können Sie die jederzeit auf den Servern im Rechenzentrum deployen, der Kunde bekommt diese sofort, wenn er die URL öffnet. Außerdem liegen die Daten automatisch auf Servern und können somit von mehreren Benutzern gleichzeitig benutzt werden.
+
+Heutige Applikationen basieren oft auf Online. Das liegt daran, dass es einfacher ist viele Nutzer auf verschiedenen Plattformen wie PC oder Handy zu erreichen. Die Nutzer müssen auf ihrem PC nichts installieren können trotzdem die Anwendung sofort nutzen, wenn ein Browser auf dem PC installiert ist.
+
+Um Online - Software zu deployen benötigt man einen Server, der im Idealfall über das Internet erreichbar ist. Auch hier hat sich in den letzten Jahrzehnten viel getan. Schauen wir uns Evolution des Deployments genauer an.

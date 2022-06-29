@@ -31,7 +31,7 @@ Beispiel von: https://en.wikipedia.org/wiki/X86_assembly_language
 
 Hier sieht man die einzelnen Befehle um „Hello World“ aus der Konsole auszugeben. Assembler ist auf Basis des CPU-Befehlssatzes und wird heute nur noch sehr selten verwendet. Assembler Code ist schwer und umständlich zu entwickeln und wird sehr schnell unübersichtlich. Deswegen haben sich Entwickler schon sehr früh damit beschäftigt, wie man effektiver Programme schreiben kann. Daraufhin sind Programmiersprachen in Hülle und Fülle entstanden von denen sich einige durchgesetzt haben, z.B. C. Hier sieht das gleiche Programm so aus:
 
-```
+```go
 #include <stdio.h>
 
 main()
@@ -90,7 +90,7 @@ Variablen
 
 Um Werte im Speicher abzulegen gibt es Variablen. Der Entwickler überlegt sich einen sprechenden Namen, kann diesem Namen einen Wert zuweisen und schon ist dieser Wert im Speicher abgelegt. Über den Namen kann man den Wert auch wieder abrufen. Das Ganze nennt man eine Variable, weil man den Inhalt im Laufe des Programms auch ändern kann.
 
-```
+```go
 /* in der Variable mit Namen a steht die Zahl 10. Im weiteren Verlauf kann man mit Namen a weiterarbeiten */
 a := 10
 
@@ -102,7 +102,7 @@ Listen
 
 Man kann auch Variablen in Listen ablegen. Das kommt recht häufig vor und das nennt man Arrays. Über die Listen kann relativ leicht iterieren. D.h. in einer Schleife einen Wert nach dem anderen verarbeiten.
 
-```
+```go
 arr := [5]int{1,2,3,5,8} // Eine Folge an Zahlen
 ```
 
@@ -123,7 +123,7 @@ Außerdem gibt es noch komplexe Typen aus der Standardbibliothek wie Date also e
 
 Nicht alle Programmiersprachen benötigen explizit die Angabe von Typen. In Javascript z.B. werden die Typen über den Inhalt der Variable ermittelt. D.h. wenn man der Variablen einen Wert in „“ zuweist wird das automatisch zu einem String. Der Typ kann hier auch dynamisch wechseln. D.h. wenn man eine Variable a mit "hello world" initialisiert ist es ein String, wenn man danach a  eine 0 zuweist wird automatisch ein int daraus. In Golang gibt es beides. Wenn man eine Variable ohne Wert initialisiert dann muss man den Typen angeben. Wenn man ohne Wert eine Variable deklarieren möchte dann muss der Typ dabei stehen. Ein Wechsel des Typs ist dann nicht mehr möglich und wird einen Fehler falls das versucht wird.
 
-```
+```go
 //Die Variable number ist vom Typ integer 
 //also ein ganze Zahl mit bit speicher 
 //länge
@@ -165,7 +165,7 @@ Man schreibt keine Typen oder Variablen in Deutsch, das ist hier nur der einfach
 
 Um einen konkreten Kunden im Speicher anzulegen verwendet man folgende Syntax:
 
-```
+```go
 kunde1 := Kunde{ ID: „4711“, Name: „Bertram“}
 kunde2 := Kunde{ ID: „1234“, Name: „Charly“ }
 
@@ -179,7 +179,7 @@ Operationen
 
 Um mit den Variablen etwas zu tun gibt es Operationen. Plus, Minus, Zusammensetzen von Texten, Vergleiche usw.. Operationen passen sich an die Typen an. Wenn man zwei Text mit + addieren möchte, werden die Texte zusammengefügt, während wenn man zwei Zahlen addiert werden die zwei Zahlen ganz normal mathematisch aufsummiert.
 
-```
+```go
 //In a steht danach 12
 let a = 10
 a = a + 2   
@@ -195,7 +195,7 @@ Es gibt Wörter mit einer besonderen Bedeutung die man nicht anders verwenden da
 
 Mit if kann man z.B. einen Programmteil nur ausführen, wenn eine Bedingung erfüllt ist:
 
-```
+```go
 /* wenn a den Wert 12 hat dann wird der Code innerhalb des ifs ausgeführt, === ist Vergleichsoperator der wahr oder falsch zurückgibt */
 
 if(a === 12) {
@@ -206,19 +206,19 @@ if(a === 12) {
 
 Mit for kann man bestimmte Befehle immer wieder wiederholen solange bis eine Bedingung eintrifft. Das funktioniert vor allem gut mit Arrays.
 
-```
+```go
 /*Der Code in den Klammern wird 10x ausgeführt. Man kann auch statt i<10 auch eine Variable verwenden. So kann man z.B. über eine Liste von Daten etwas tun dessen Anzahl man vorher nicht kennt. In dem Beispiel wird der die Zahl 0 – 9 in der Konsole ausgegeben.*/
 
 for i:=0; i<10; i++ {
   fmt.Println(i)
 }
-```
+```go
 
 Funktionen
 
 Strukturieren und Wiederverwenden von Programmteilen ist bei komplexen Applikationen wichtig, deswegen kann man seinen Code in Funktionen aufteilen
 
-```
+```go
 //In der Funktion warden die Übergabeparameter summiert
 //und zurückgegeben
 func add(a, b) int {
@@ -234,7 +234,7 @@ In dem Beispiel haben wir eine Funktion *add* programmiert. Man kann einer Funkt
 
 Wenn man z.B. eine Funktion hat die eine Liste sortiert, dann kann man ganz einfach die Sortierung an verschiedenen Stellen verwenden und der Funktion einen entsprechenden Namen geben. Wie Sortierung dann funktioniert ist erst einmal unwesentlich. Die können relativ kompliziert werden, wenn man diese performant umsetzen möchte.
  
-```
+```go
 let listWithManyData = […]
 
 /* Mit dem Schlüsselwort function kann man eine Funktion definieren. Diese trägt den Namen sortList und in der Klammer stehen die Übergabeparamenter */
@@ -255,7 +255,7 @@ Um den Code noch weiter zu strukturieren fasst man Code zusammen der fachlich zu
 
 In Golang nutzt man das Schlüsselwort import um Libraries zu verwenden:
 
-```
+```go
 package main
 
 //Hier wird definiert welche Libraries verwendet werden können
@@ -292,7 +292,8 @@ Eine Erweiterung der Typisierung gibt es in der Objektorientierung auch OOP gena
 Oben haben wir gesehen dass der Entwickler Typen anlegen kann wie Artikel und darin die Eigenschaften eines Artikels anlegen kann. In der Objektorientierung ist es so, dass man in Typen nicht nur Werte speichern kann sondern auch Funktionen. D.h. man kann einer Entität auch noch Fähigkeiten geben. Deswegen reden man von Klassen und wenn man davon eine Instanz erstellt, hat man ein Objekt. Man spricht auch nicht mehr von Variablen innerhalb der Klasse, sondern von Members und Funktionen heißen Methoden. Klassen können auch weitere Klassen beinhalten und ein spezielles Feature ist, dass Klassen von anderen Klassen erben können.
 
 Aber eins nach dem anderen. Ein Entwickler kann eine Klasse definieren mit Variablen (Member) und Funktionen (Methoden). Das hilft sehr gut die fachliche Domäne abzubilden. Normalerweise haben Dinge in der echten Welt eben auch Eigenschaften und bestimmt Fähigkeiten. Ein Auto z.B. hat Farbe, Anzahl Türen, Pferdestärken. Das sind die Eigenschaften des Autos. In Programmiersprachen nutzen wir für das Speichern der Daten eben Variablen oder eben Member genannt. Ein Auto hat aber auch Fähgkeiten wie Fahren, Rückwärts einparken, Navigieren. Das wird über Funktionen oder eben Methoden genannt abgebildet. Der Unterschied zur strukturierten Programmierung ist also dass man Daten und Funktionen zusammenfassen kann, was den Code nochmal lesbarer und einfacher macht. So sieht eine Klasse Auto Java aus:
-```
+
+```go
 class Auto {
 	String hersteller;
 	int ps;
@@ -313,7 +314,7 @@ class Auto {
 
 In Objektorientierung kann man Klassen von anderen Klassen erben lassen. Die Kindklasse erbt alle Members und Methoden der Vaterklasse und kann diese erweitern oder auch anpassen. Das kann man wieder mit der realen Welt vergleichen. Autos haben viele Eigenschaften oder Fähigkeiten gemeinsam. Jedes Auto kann fahren, wenn es diese Fähigkeit verliert, ist es kaputt und jedes Auto hat einen Motor der eine bestimmte Stärke aufweist, gemessen in KW oder Pferdestärken. Aber trotzdem gibt es viele verschiedene Arten von Autos, die unterschiedliche Fähigkeiten bieten wie Rückfahrkamera oder selbständiges Fahren. Um das abzubilden kann man die Vererbung einsetzen.
 
-```
+```go
 class SelbstfahrendesAuto extends Auto {
   public float selbststaendigFahren() {
 		…
@@ -333,7 +334,7 @@ Die Aufteilung der Daten in Klassen ist eine wichtige Aufgabe und sollte von erf
 
 Ein weiteres Sprachelement, dass man in dem Zuge eingeführt hat: Das Interface. Ein Interface definiert ein Verhalten und bringt keine Funktionalität und auch keine Members mit. Wenn ich eine Klasse von einem Interface erben lasse, gehe ich die Verpflichtung ein, dass ich das Verhalten das definiert wurde auch umgesetzt habe. Das nennt man auch Contract. Hier setzt wieder der Polymorphismus ein. Eine Funktion muss nicht die konkrete Klasse kennen, es reicht das Interface. Interfaces sind eine super Möglichkeit seine Software zu strukturieren und testfähig zu entwickeln.
 
-```
+```go
 /* Man definiert ein Interface mit dem Namen IGesamtSumme und jede Klasse die sich davon ableitet muss diese Funktion BerechneGesamtSumme() implementieren */
 interface IGesamtSumme {	
 	float BerechneGesamtSumme();
@@ -386,7 +387,7 @@ Das führt alles dazu, dass man in einen Fehler im Programm läuft. Und Fehlerha
 
 In Java sieht das so aus:
 
-```
+```go
 /*try ist das Schlüsselwort und tut das was try aussagt: Probiere mal folgenden Code, wenn etwas schief läuft dann führe den Code im catch block aus*/
 
 try {

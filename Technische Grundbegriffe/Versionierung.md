@@ -1,0 +1,63 @@
+Versionierung
+
+Um Code zu verwalten haben Entwickler ein eigenes Programm entwickelt, ein Versionskontrollsystem. Das bekannteste ist Git, welches frei verfügbar ist. In einem Versionskontrollsystem (VCS) kann man seinen aktuellen Stand zwischenspeichern und einen Kommentar hinterlegen, in dem der Entwickler erklärt was man im Code geändert hat. Dadurch erhält man eine Historie von allen Änderungen und kann sogar auf einen alten Stand zurückspringen. Dazu muss man das VCS in dem Ordner initialisieren, in dem der Code liegt. Diesen Ordner nennt man dann ein Repository. Der Entwickler kann dann ganz einfach seinen Code ändern und in das Versionskontrollsystem speichern. Das nennt man einen checkin oder auch einen commit. Dazu wird gespeichert wer welchen Code wie geändert hat.
+
+
+image016.png (Abbildung 8 Mehrere Checkins in das VCS)
+
+Man kann seinen Code auch verzweigen auch branchen genannt. Mit einem Branch erstellt man eine komplette Kopie des aktuellen Standes. Wenn man den Branch auswählt, kann man darauf arbeiten ohne den originalen Stand des Codes zu verändern. Das verwendet der Entwickler z.B. wenn er ein neues Feature entwickelt oder auch nur etwas ausprobieren möchte. Wenn der Entwickler mit seiner Arbeit zufrieden ist spielt man die Änderungen auf den das Original, das nennt man mergen. Man kann zwischen zwei Branches hin und herspringen. Das VCS sorgt dafür, dass man auf der entsprechenden Version der Dateien arbeitet. 
+
+Ein Entwickler möchte ein neues Feature entwickeln:
+
+- Er arbeitet auf dem Originalstand des Codes oft auch master branch genannt.
+- Er erstellt einen neuen Branch mit dem Namen des Features z.B. sort
+- Er entwickelt das neue Feature, checkt in den Branch neue Änderungen ein
+- Inzwischen ist ein Bug in dem aktuellen Release aufgetreten der gefixed werden muss, also wechselt der Entwickler zu dem master branch. Das VCS stellt den master branch wieder her. Der Entwickler fixed den Bug, checked ihn ein und stellt einen Patch bereit. 
+- Danach wechselt der Entwickler wieder zu seinem Branch sort wo seine vorher eingecheckten Änderungen wieder hergestellt werden.
+- Den Patch aus dem master branch kann er mit einem rebase in den Branch sort übernehmen
+- Wenn das Feature umgesetzt ist, kann man die Änderungen in den master branch mit einem merge übernehmen und den Branch sort löschen. 
+
+image017.png (Abbildung 9 Branchen eines Codes und mergen in den originalen Branch)
+
+Das Versionskontrollsystem ermöglicht es vor allem, dass mehrere Entwickler zusammenarbeiten können auf einer Codebasis. Dazu wird ein Repository auf einem zentralen Server eingerichtet und die Entwickler Klonen das Repository auf ihren PC. Das ist ein einmaliger Vorgang. Beim Klonen wird das Repository lokal eingerichtet und mit dem Repository auf dem Server verbunden. Die größte Sammlung von Opensource Projekten ist auf den Servern von Github zu finden.
+
+image018.png (Abbildung 10 Pull von einem zentralen Repository)
+
+Das initiale Herunterladen von einem Repository nennt man klonen. Wenn man Änderungen von einem anderen Entwickler auf seinem Klon integrieren will nennt man das pull. Und wenn man lokale Änderungen in das zentrale Repository zurückspielen will, nennt man das einen push.
+
+
+Abbildung 11 Push und Pull mit Server
+
+Nachdem Entwickler lokal auf ihrem aktuellen Stand arbeiten und erst bei einem Pull die neue Version bekommen, kommt es vor, dass mehrere Entwickler lokal bei sich die gleichen Dateien ändern und diese wieder auf den Server zurückspielen. Das Versionkontrollsystem versucht die Änderungen der Dateien automatisch zusammenzuführen, also zu mergen. Das funktioniert normalerweise ganz gut, allerdings kann es auch zu Konflikten führen. D.h. dass Versionskontrollsystem kann nicht entscheiden wie die Änderungen zusammenzuführen sind und meldet das dem Entwickler. Der muss dann die Mergekonflikte manuell auflösen. 
+
+Abbildung 12 Mergekonflikt
+
+Wie in dem Bild dargestellt ändern zwei Entwickler lokal die gleiche Datei und wollen diese auf das zentrale Repository pushen. Das funktioniert tatsächlich solange sie nicht die gleichen Zeilen ändern. Aber in dem Beispiel wurde ein und dieselbe Zeile geändert. Das VCS löst einen Mergekonflikt aus und derjenige der als zweites die Version pushen wollte muss den Konflikt bei sich lokal lösen. Das kann viel Zeit kosten und ein Projekt verzögern. Ständige Mergekonflikte können auf vielfältige Probleme im Projekt hinweisen.
+
+Wenn Mergekonflikte häufiger auftreten hat man mehrere Möglichkeiten:
+
+- die Entwickler können kleinere Codeänderungen einchecken, dann fällt es dem Mergealgorithmus leichter Dateien zusammenzuführen
+- die Architektur könnte kleinteiliger werden, d.h. mehr und kleinere Dateien, dann arbeiten Entwickler weniger in den gleichen Dateien.
+- die Priorisierung der Aufgaben ändern, so dass Entwickler in verschiedenen Bereichen der Anwendung arbeiten und nicht gleiche Dateien ändern
+- die Aufgaben der Entwickler können kleiner geschnitten werden, was zu kleineren Codeänderungen führt.
+
+Wie auch immer Sie das Problem lösen, viele Mergekonflikte sind ein häufiges Problem, dass einem Projekt unnötig Zeit kostet und das vermieden werden sollte. 
+
+Wenn Code geändert wurde, sollte von anderen Entwicklern der geänderte Code überprüft werden. Das nennt man ein Code Review. Dabei können die Entwickler Kommentare hinterlassen und darüber diskutieren, ob es einen besseren Weg gibt, den Code verändern und am Schluss, wenn alle zufrieden sind den Code einchecken. Das macht man oft vor dem Mergen des Codes und wird Merge Request oder Pull Request genannt. Das funktioniert sehr gut, wenn man Software oder Plattformen wie Github oder Gitlab als zentrales Gitrepository Managementtool verwendet. Code Reviews erhöhen nicht nur die Qualität des Codes, sondern streut das Wissen unter den Entwicklern.
+
+Ein Versionskontrollsystem zu verwenden ist unbedingt notwendig. Wenn Sie kein VCS verwenden wird Ihr Projekt scheitern. Wichtig ist aber auch dass Sie eine passenden Branching Mering Strategie nutzen.
+
+Feature Based Branching Merging Strategie
+
+Das VCS lässt einem viele Freiheiten. Deswegen definieren die Projekte eine Branching Merging Strategie Im schlechtesten Fall gibt es einen einzigen Branch in dem alle Entwickler direkt einchecken. Das führt normalerweise zu Chaos.
+
+Deswegen sollte man mit einer Feature based branching merging Strategie starten. Diese sieht auf den ersten Blick etwas komplizierter aus: 
+
+Abbildung 13 Feature based branching merging strategy
+
+Der Master ist immer eine stabile aktuelle Version, in die kein Entwickler direkt einchecken darf. Sie sollten jederzeit in der Lage sein den Masterbranch an den Kunden auszuliefern. Jedes Feature wird in einem eigenen Branch entwickelt. Wenn ein Feature fertig entwickelt ist wird es getestet, gereviewed und erst dann darf es in den Master gemerged werden. Das Vorgehen hat zwei Vorteile:
+
+- Die Testphase bevor ein neues Release erstellt wird, kann von den Entwicklern für neue Features für das nächste Release genutzt werden
+- Falls sich ein Release verzögert kann man trotzdem ein neues Release ausliefern. Dann liefert man das verzögerte Feature eben im nächsten Release mit aus.
+
+Das ist ein gängiger Weg der sehr gut funktioniert. 
