@@ -1,4 +1,4 @@
-Dieses Buch ist gerade in Arbeit und wird sukzessive erweitert. Falls Sie Fragen oder Anmerkungen haben über github können Issues erstellt werden.
+Dieses Buch ist gerade in Arbeit und wird sukzessive erweitert. Falls Sie Fragen oder Anmerkungen haben über github können Issues erstellt werden auf https://github.com/b3rtram/IntroAppDev.
 
 Sie möchten Ihr Unternehmen digitalisieren? Super, die richtige Entscheidung um sich in Zukunft gegen die Konkurrenz zur Wehr zu setzen. Aber es wird eine lange beschwerliche Reise bei dem Sie Mut und Fehlertoleranz benötigen und sich auch unangenehmen Wahrheiten stellen müssen. Die Digitalisierung wird Ihnen vor allem eines bringen: **Transparenz**
 
