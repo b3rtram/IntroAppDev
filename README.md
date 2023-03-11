@@ -1,3 +1,5 @@
+Dieses Buch ist gerade in Arbeit und wird sukzessive erweitert. Falls Sie Fragen oder Anmerkungen haben über github können Issues erstellt werden.
+
 Sie möchten Ihr Unternehmen digitalisieren? Super, die richtige Entscheidung um sich in Zukunft gegen die Konkurrenz zur Wehr zu setzen. Aber es wird eine lange beschwerliche Reise bei dem Sie Mut und Fehlertoleranz benötigen und sich auch unangenehmen Wahrheiten stellen müssen. Die Digitalisierung wird Ihnen vor allem eines bringen: **Transparenz**
 
 Transparenz über Ihr Unternehmen in einem nie gekannten Ausmaß mit der Möglichkeit die richtigen Entscheidungen oder richtige Strategie auf fundierten Fakten abzuleiten, aber auch neue Business Modelle die das Überleben Ihres Unternehmens sichern können. Vielleicht werden Sie feststellen, dass Ihre Organisation mit der Geschwindigkeit der neuen technologischen Möglichkeiten nicht zurechtkommt, dass festgefahrene Prozesse Ihnen den Umstieg schwer machen oder dass Sie oder Ihre Mitarbeiter sich mit dem „New Work“ nicht abfinden können. Trotzdem ist der Weg der Richtige und muss gegangen werden, sonst tun es andere und sie bleiben zurück.
